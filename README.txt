@@ -1,0 +1,1 @@
+This will be a basic blog application using ASP.NET, C# and MVC architecture.
