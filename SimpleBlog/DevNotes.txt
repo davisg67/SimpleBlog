@@ -1,0 +1,10 @@
+﻿*** Setting up Authentication and Authorization ***
+
+Review video tutorial Section 2, lecture 11.
+
+1. Web.config -> System.Web : Add Authentication and roleManager tags.
+2. Create Infrastructure directory (not part of MVC), and add RoleProvider class.
+3. Update RoleProvider class.
+4. AuthController - add Login and Logout methods.
+5. Views -> Auth -> Login.cshtml page edits.
+6. Update RouteConfig class.
