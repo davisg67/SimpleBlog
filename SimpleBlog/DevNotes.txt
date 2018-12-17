@@ -8,3 +8,9 @@ Review video tutorial Section 2, lecture 11.
 4. AuthController - add Login and Logout methods.
 5. Views -> Auth -> Login.cshtml page edits.
 6. Update RouteConfig class.
+
+
+An ActionResult is a return type of a controller method, also called an action 
+method, and serves as the base class for *Result classes. Action methods return 
+models to views, file streams, redirect to other controllers, or whatever is 
+necessary for the task at hand.

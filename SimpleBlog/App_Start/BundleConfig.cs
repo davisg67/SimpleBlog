@@ -12,7 +12,7 @@ namespace SimpleBlog.App_Start
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/admin/styles")
-                .Include("~/content/styles/bootstrap.css")
+                .Include("~/Content/Styles/bootstrap.css")
                 .Include("~/content/styles/fontawesome.css")
                 .Include("~/content/styles/admin.css"));
 

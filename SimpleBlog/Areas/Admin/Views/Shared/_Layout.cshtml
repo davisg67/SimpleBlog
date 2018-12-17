@@ -1,0 +1,51 @@
+﻿@using System.Web.Optimization
+
+@{
+    Layout = null;
+}
+
+@helper SelectedTabClass(string tabName) { 
+    if (tabName == ViewBag.selectedTab)
+    {
+        @:active
+    }
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Simple Blog Admin</title>
+    @Styles.Render("~/admin/styles")
+</head>
+<body>
+    <div class="container">
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                @*(ViewBag.SelectedTab == 'Posts' ? 'active' : '')*@
+                @*@Html.ActionLink("Posts", "Index", "Posts", new { area = "admin"}, new { @class= "@SelectedTabClass('posts')" })*@
+                <a href=@Url.Action("Index", "posts", new { Area = "admin"}) class="nav-link @SelectedTabClass("posts")">Posts</a>
+                
+            </li>
+            <li class="nav-pill-space nav-item">
+                @*@Html.ActionLink("Users", "Index", "users", new { area = "admin" }, new { @class = "(ViewBag.SelectedTab == 'users' ? 'active' : '')" })*@
+                <a href=@Url.Action("Index", "users", new { Area = "admin"}) class="nav-link @SelectedTabClass("users")">Users</a>
+            </li>
+            <li class="nav-pill-space nav-item ml-auto">
+                @Html.RouteLink("Back to Website", "Home")
+            </li>
+        </ul>
+
+        @RenderBody()
+    </div>
+
+    <!--INSERT VIEW HERE-->
+    
+    
+    
+
+    @Scripts.Render("~/admin/scripts")
+    @RenderSection("Scripts", false)
+</body>
+</html>
