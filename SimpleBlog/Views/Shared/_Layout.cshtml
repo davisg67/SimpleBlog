@@ -22,10 +22,10 @@
             <p>Welcome back, @User.Identity.Name</p>
             <a href="@Url.RouteUrl("login")">Logout</a>
 
-            if (User.IsInRole("admin"))
+            @*if (User.IsInRole("admin"))
             {
                 <a href="@Url.RouteUrl("login")">Logout</a>
-            }
+            }*@
         }
         else
         {

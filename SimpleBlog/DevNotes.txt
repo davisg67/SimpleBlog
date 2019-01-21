@@ -21,3 +21,12 @@ necessary for the task at hand.
 
 * Rollback *
 ..\packages\FluentMigrator.1.6.2\tools\Migrate.exe --db=SqlServer2014 --target=bin\simpleblog.dll --configPath=Web.config -c=MainDb -t=rollback
+
+Tools -> DeployDB bat file for initial migration.
+
+* Install NHibernate *
+To Configure in Web.config add <configSections> and <hibernate-configuration> sections.
+
+IMPORTANT - Every single class that you want NHibernate to map to must have virtual members.
+User entity in Model directory.
+Database class - NHibernate configuration/mapping.
