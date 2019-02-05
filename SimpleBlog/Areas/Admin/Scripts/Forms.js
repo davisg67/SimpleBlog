@@ -11,10 +11,15 @@
         if (message && !confirm(message)) //No was selected in confirmation message.
             return;
 
+        //Hidden form in admin _Layout.
+        var antiForgeryToken = $("#anti-forgery-form input");
+        var antiForgeryInput = $("<input type='hidden'>").attr("name", antiForgeryToken.attr("name")).val(antiForgeryToken.val());
+
         //Create form element and post.
         $("<form>")
             .attr("method", "post")
             .attr("action", $this.attr("href")) //The action set in Href.
+            .append(antiForgeryInput)
             .appendTo(document.body)
             .submit();
     });

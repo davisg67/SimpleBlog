@@ -21,3 +21,8 @@
     color: red;
 }
 
+/*Admin _Layout*/
+#anti-forgery-form {
+    display: none;
+}
+
