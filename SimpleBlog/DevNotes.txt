@@ -35,7 +35,9 @@ User entity in Model directory.
 
 Create User file in Models - User and UserMap classes
 
-
-
+** SECURITY **
+BCrypt for password hashing - Slow, immune to GPUs, Future proof(increasing work factor) and built-in salt.
+FakeHash() method for preventing detection of user account by timing hash.
+CSRF - Cross-site request forgery prevention.
 
 

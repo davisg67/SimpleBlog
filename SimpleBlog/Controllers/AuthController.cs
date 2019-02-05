@@ -1,4 +1,5 @@
-﻿using SimpleBlog.ViewModels;
+﻿using SimpleBlog.Models;
+using SimpleBlog.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,10 +27,20 @@ namespace SimpleBlog.Controllers
         [HttpPost]
         public ActionResult Login(AuthLogin form, string returnUrl)
         {
+            var user = Database.Session.Query<User>().FirstOrDefault(u => u.Username == form.Username);
+
+            //Defeat timing test to determine if user is valid. See method for further explanation.
+            if (user == null)
+                SimpleBlog.Models.User.FakeHash();
+
+            //Validate user name and password.
+            if (user == null || !user.CheckPassword(form.Password))
+                ModelState.AddModelError("Username", "Username or password is incorrect.");
+
             if (!ModelState.IsValid)
                 return View(form);
 
-            FormsAuthentication.SetAuthCookie(form.Username, true);
+            FormsAuthentication.SetAuthCookie(user.Username, true);
 
             //Future upgrade consideration - check that redirection is to proper domain.
             if (!string.IsNullOrWhiteSpace(returnUrl))
