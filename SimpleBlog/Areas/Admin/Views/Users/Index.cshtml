@@ -1,12 +1,40 @@
 ﻿@model SimpleBlog.Areas.Admin.ViewModels.UsersIndex
 
-<h1>Users</h1>
+<p><h1>Users</h1></p>
 
-<ul>
-    @foreach (var user in Model.Users)
-    {
-        <li>@user.Username</li>
-    }
 
-</ul>
+<div class="btn-toolbar">
+    <a href="@Url.Action("new")" class="btn btn-primary btn-sm"><i class="fas fa-plus fa-fw" aria-hidden="true"></i>Create User</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>User Name</th>
+            <th>E-mail</th>
+            <th>Roles</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach(var user in Model.Users)
+        {
+            <tr>
+                <td>@user.Id</td>
+                <td>@user.Username</td>
+                <td>@user.Email</td>
+                <td>{ToDo}</td>
+                <td>
+                    <div class="btn-group">
+                        <a href="@Url.Action("edit", new{user.Id})" class="btn btn-primary btn-xs"><i class="far fa-edit fa-fw" aria-hidden="true"></i>Edit</a>
+                        <a href="@Url.Action("resetpassword", new{user.Id})" class="btn btn-outline-secondary btn-xs"><i class="fa fa-redo fa-fw" aria-hidden="true"></i>Reset Password</a>
+                        <a href="@Url.Action("delete", new{user.Id})" class="btn btn-danger btn-xs" data-post="Are you sure you want to delete @user.Username?"><i class="fas fa-user-slash fa-fw" aria-hidden="true"></i>Delete</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 

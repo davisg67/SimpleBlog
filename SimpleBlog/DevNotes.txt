@@ -25,8 +25,17 @@ necessary for the task at hand.
 Tools -> DeployDB bat file for initial migration.
 
 * Install NHibernate *
+Create Database class - NHibernate configuration/mapping.
+Set Database.Configure() in Application_Start() of Global.asax. Also set Begin and End Request methods.
+
 To Configure in Web.config add <configSections> and <hibernate-configuration> sections.
 
 IMPORTANT - Every single class that you want NHibernate to map to must have virtual members.
 User entity in Model directory.
-Database class - NHibernate configuration/mapping.
+
+Create User file in Models - User and UserMap classes
+
+
+
+
+
