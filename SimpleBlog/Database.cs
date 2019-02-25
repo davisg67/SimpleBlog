@@ -30,7 +30,10 @@ namespace SimpleBlog
             //Add our mappings - mapping requires entity, entity is a class representing
             //a row in the database. Class in User file in Models.
             var mapper = new ModelMapper(); //Create mapper obj
-            mapper.AddMapping<UserMap>();  //Define mappings to mapper obj.
+
+            //Define mappings to mapper obj.
+            mapper.AddMapping<UserMap>();  
+            mapper.AddMapping<RoleMap>();
 
             //Adds mappings to configuration object.
             config.AddMapping(mapper.CompileMappingForAllExplicitlyAddedEntities());

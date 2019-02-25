@@ -25,7 +25,7 @@
                 <td>@user.Id</td>
                 <td>@user.Username</td>
                 <td>@user.Email</td>
-                <td>{ToDo}</td>
+                <td>@string.Join(", ", user.Roles.Select(role => role.Name))</td>
                 <td>
                     <div class="btn-group">
                         <a href="@Url.Action("edit", new{user.Id})" class="btn btn-primary btn-xs"><i class="far fa-edit fa-fw" aria-hidden="true"></i>Edit</a>

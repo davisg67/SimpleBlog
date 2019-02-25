@@ -24,6 +24,13 @@ namespace SimpleBlog.Models
         public virtual string Email { get; set; }
         public virtual string PasswordHash { get; set; }
 
+        public virtual IList<Role> Roles { get; set; }  //Contains a refernce to every role of the user.
+
+        public User()
+        {
+            Roles = new List<Role>(); //Instanciate to avoid null reference when creating user instance.
+        }
+
         public virtual void SetPassword(string password)
         {
             PasswordHash = BCrypt.Net.BCrypt.HashPassword(password, WorkFactor);
@@ -55,6 +62,16 @@ namespace SimpleBlog.Models
                 x.Column("password_hash"); //Overrides the property name for column name.
                 x.NotNullable(true);
             });
+
+            //Bag is a collection (nhibernate) - collection mapping.
+            Bag(x => x.Roles, x =>
+            {
+                //Pivot table
+                x.Table("role_users");
+                x.Key(k => k.Column("user_id"));
+
+
+            }, x => x.ManyToMany(k => k.Column("role_id")));
         }
     }
 }

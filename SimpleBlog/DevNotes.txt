@@ -34,12 +34,13 @@ IMPORTANT - Every single class that you want NHibernate to map to must have virt
 User entity in Model directory.
 
 Create User file in Models - User and UserMap classes
-
+Create Role file in Models - Role and RoleMap classes
+Add mappings in Database.cs so NHibernate knows.
 
 
 ** SECURITY **
 BCrypt for password hashing - Slow, immune to GPUs, Future proof(increasing work factor) and built-in salt.
 FakeHash() method for preventing detection of user account by timing hash.
-CSRF - Cross-site request forgery prevention. 
+CSRF - Cross-site request forgery prevention. Implement anti forgery token.
 
 
