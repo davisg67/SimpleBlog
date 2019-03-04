@@ -22,7 +22,8 @@ necessary for the task at hand.
 * Rollback *
 ..\packages\FluentMigrator.1.6.2\tools\Migrate.exe --db=SqlServer2014 --target=bin\simpleblog.dll --configPath=Web.config -c=MainDb -t=rollback
 
-Tools -> DeployDB bat file for initial migration.
+Tools -> DeployDB bat file for initial migration. 
+To run bat file in PS -> Open power shell in tools dir. Run cmd.exe /c DeployDb-Dev.bat
 
 * Install NHibernate *
 Create Database class - NHibernate configuration/mapping.

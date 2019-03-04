@@ -43,7 +43,7 @@ namespace SimpleBlog.Models
 
             Property(x => x.Title, x => x.NotNullable(true));
             Property(x => x.Slug, x => x.NotNullable(true));
-            Property(x => x.Content, x => x.NotNullable(true));
+            Property(x => x.Content, x => x.NotNullable(false));
 
             Property(x => x.CreatedAt, x =>
             {

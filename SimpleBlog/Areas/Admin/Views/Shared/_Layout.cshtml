@@ -18,6 +18,7 @@
     <meta name="viewport" content="width=device-width" />
     <title>Simple Blog Admin</title>
     @Styles.Render("~/admin/styles")
+    
 </head>
 <body>
     <div class="container">
@@ -46,7 +47,9 @@
     
 
     @Scripts.Render("~/admin/scripts")
+    
     @RenderSection("Scripts", false)
+    
 
     <form id="anti-forgery-form">
         @Html.AntiForgeryToken()

@@ -1,17 +1,106 @@
-﻿
+﻿@model SimpleBlog.Areas.Admin.ViewModels.PostsIndex
 
-<!DOCTYPE html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+<p><h1>Posts</h1></p>
 
-<html>
-    <head>
-        <meta name="viewport" content="width=device-width" />
-        <title>Index</title>
-    </head>
+<div class="btn-toolbar">
+    <div class="btn-group">
+        <a href="@Url.Action("new")" class="btn btn-primary btn-sm"><i class="fas fa-plus fa-fw" aria-hidden="true"></i>Create Post</a>
+    </div>
 
-    <body>
-        <div> 
-            <h1>Posts</h1>
-        </div>
-    </body>
+    <div class="btn-group ml-auto">
+        @if (Model.Posts.HasPreviousPage)
+        {
+           <a href="@Url.Action("Index", new{page=Model.Posts.PreviousPage})" class="btn btn-primary btn-sm">
+              <i class="fas fa-chevron-circle-left" aria-hidden="true"></i> Previous Page
+           </a>
+        }
+        else
+        {
+            <a href="#" class="btn btn-light btn-sm">
+                <i class="fas fa-chevron-circle-left" aria-hidden="true"></i> Previous Page
+            </a>
+        }
 
-</html>
+        @if (Model.Posts.HasNextPage)
+        {
+            <a href="@Url.Action("Index", new{page=Model.Posts.NextPage})" class="btn btn-primary btn-sm">
+                Next Page <i class="fas fa-chevron-circle-right" aria-hidden="true"></i>
+            </a>
+        }
+        else
+        {
+            <a href="#" class="btn btn-light btn-sm">
+                Next Page <i class="fas fa-chevron-circle-right" aria-hidden="true"></i>
+            </a>
+        }
+
+    </div>
+</div>
+
+@*<ul>
+    @foreach (var item in Model.Posts)
+    {
+        <li>@item.Title</li>
+    }
+</ul>*@
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Tags</th>
+            <th>Date</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var post in Model.Posts)
+        {
+            var cls = "";
+            if (post.IsDeleted)
+            {
+                cls = "danger";
+            }
+
+            <tr class="@cls">
+                <td>@post.Title</td>
+                <td>@post.User.Username</td>
+                <td>@string.Join(", ", post.Tags.Select(t => t.Name))</td>
+                <td>@post.CreatedAt</td>
+                <td>
+                    <a href="@Url.Action("edit", new { post.Id })" class="btn btn-sm btn-primary">
+                        <i class="far fa-edit" aria-hidden="true"></i> Edit
+                    </a>
+
+                    @if (!post.IsDeleted)
+                    {
+                        <div class="btn-group btn-group-sm">
+                            <a href="#" class="btn btn-danger">
+                                <i class="fa fa-trash" aria-hidden="true"></i> Trash
+                            </a>
+
+                            <a href="#" class="btn btn-danger dropdown-toggle" data-toggle="dropdown"></a>
+
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-times"></i> Delete
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    }
+                    else
+                    {
+                        <a href="#" class="btn btn-sm btn-success">
+                            <i class="fas fa-undo"></i> Restore
+                        </a>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
