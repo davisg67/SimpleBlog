@@ -25,5 +25,29 @@
     });
 
 
+    //Loop all elements that have the data-slug attribute.
+    $("[data-slug]").each(function () {
+        //Locate the text field to get the slug value.
+        var $this = $(this);
+        var $sendSlugFrom = $($this.data("slug"));
+
+        //Key press event handler attached.
+        $sendSlugFrom.keyup(function () {
+            var slug = $sendSlugFrom.val();
+            slug = slug.replace(/[^a-zA-Z0-9\s]/g, ""); //replace all special characters with empty string.
+            slug = slug.toLowerCase();
+            slug = slug.replace(/\s+/g, "-"); //Replace all spaces with a -
+
+            //If final character is a dash we trim it off.
+            if (slug.charAt(slug.length - 1) === "-")
+            {
+                slug = slug.substr(0, slug.length - 1);
+            }
+                
+            $this.val(slug); //Update value to the formatted slug.
+        });
+    });
+
+
 
 });

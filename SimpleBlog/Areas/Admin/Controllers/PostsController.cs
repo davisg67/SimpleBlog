@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace SimpleBlog.Areas.Admin.Controllers
 {
+    
     [Authorize(Roles = "admin")]
     [SelectedTab("posts")]  //Infrastructure/SelectedTabAttribute
     public class PostsController : Controller
@@ -91,6 +92,42 @@ namespace SimpleBlog.Areas.Admin.Controllers
             return RedirectToAction("index");
         }
 
-        
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Trash(int id)
+        {
+            var post = Database.Session.Load<Post>(id);
+            if (post == null)
+                return HttpNotFound();
+
+            post.DeletedAt = DateTime.UtcNow;
+            Database.Session.Update(post);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Delete(int id)
+        {
+            var post = Database.Session.Load<Post>(id);
+            if (post == null)
+                return HttpNotFound();
+
+            Database.Session.Delete(post);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost, ValidateAntiForgeryToken]
+        public ActionResult Restore(int id)
+        {
+            var post = Database.Session.Load<Post>(id);
+            if (post == null)
+                return HttpNotFound();
+
+            post.DeletedAt = null;
+            Database.Session.Update(post);
+
+            return RedirectToAction("Index");
+        }
     }  
 }

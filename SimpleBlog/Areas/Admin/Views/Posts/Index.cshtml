@@ -78,7 +78,7 @@
                     @if (!post.IsDeleted)
                     {
                         <div class="btn-group btn-group-sm">
-                            <a href="#" class="btn btn-danger">
+                            <a href="@Url.Action("trash", new{post.Id})" class="btn btn-danger" data-post="Are you sure you want to trash this post?">
                                 <i class="fa fa-trash" aria-hidden="true"></i> Trash
                             </a>
 
@@ -86,7 +86,7 @@
 
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="#">
+                                    <a href="@Url.Action("delete", new{post.Id})" data-post="Are you sure you want to permantly delete this post?">
                                         <i class="fa fa-times"></i> Delete
                                     </a>
                                 </li>
@@ -95,7 +95,7 @@
                     }
                     else
                     {
-                        <a href="#" class="btn btn-sm btn-success">
+                        <a href="@Url.Action("restore", new{post.Id})" class="btn btn-sm btn-success" data-post="">
                             <i class="fas fa-undo"></i> Restore
                         </a>
                     }

@@ -20,7 +20,7 @@
                 @Html.TextBoxFor(f => f.Title, new { @class= "form-control"})
 
                 @Html.LabelFor(f => f.Slug)
-                @Html.TextBoxFor(f => f.Slug, new { @class = "form-control" })
+                @Html.TextBoxFor(f => f.Slug, new { @class = "form-control", data_slug = "#Title" })
 
                 @Html.LabelFor(f => f.Content)
                 @Html.TextAreaFor(f => f.Content, new { @class = "form-control" })
