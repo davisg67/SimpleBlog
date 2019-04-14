@@ -24,7 +24,7 @@
             .submit();
     });
 
-
+    //SLUGIFY
     //Loop all elements that have the data-slug attribute.
     $("[data-slug]").each(function () {
         //Locate the text field to get the slug value.
